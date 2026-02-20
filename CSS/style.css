@@ -1,0 +1,316 @@
+* {
+  /*remise à zéro de toutes les marges PRIORITÉ : MAX (reset universel, s'applique à TOUT)
+     Appliqué EN PREMIER avant toutes les autres règles*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #363f48; /*PRIORITÉ : Faible (sélecteur de balise)
+     Définit le fond de la page entière*/
+}
+
+header,
+main,
+footer {
+  /* PRIORITÉ : Faible (sélecteurs de balises)
+     S'applique à TOUTES les balises header, main, footer
+     Peut être ÉCRASÉ par des classes ou IDs plus spécifiques */
+  color: #e4e4e4;
+  /*padding: 2px; /*espacement sur la page en padding pour ne pas altéré le background*/
+  font-family: "Open sans", cursive;
+}
+
+h1 {
+  /* PRIORITÉ : Faible (sélecteur de balise)
+     S'applique à TOUS les <h1> du site */
+  color: #65cca9; /*couleur du titre à revoir, car elle est partout, avec une variable CSS pour pouvoir la noter à un seul endroit et l'appliquer partout*/
+  font-size: 85px;
+  text-align: center;
+  font-family: "Tangerine", cursive;
+}
+
+h2 {
+  /* PRIORITÉ : Faible (sélecteur de balise) */
+  text-align: center;
+  color: #65cca9;
+  font-family: "Tangerine", cursive;
+  font-size: 55px;
+}
+
+p {
+  /* PRIORITÉ : Faible (sélecteur de balise)
+  MAIS peut être écrasé par .photo-accueil p (plus spécifique)*/
+  font-size: large;
+}
+
+/*============================================
+   CSS DU MENU HEADER
+   ============================================ */
+
+#menu {
+  /* PRIORITÉ : FORTE (ID) /Spécificité : 100 points /S'applique UNIQUEMENT à l'élément avec id="menu" */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  color: #65cca9;
+  font-size: 38px;
+  text-align: center;
+  font-family: "Amatic SC", cursive;
+}
+
+#menu::before,
+#menu::after {
+  /* PRIORITÉ : FORTE (ID + pseudo-élément)
+     Spécificité : 100 + 1 = 101 points
+     Crée les LIGNES à gauche et à droite du menu */
+  content: "";
+  flex-grow: 1;
+  height: 0.8px;
+  background-color: hwb(180 47% 53%);
+}
+
+#menu li {
+  /* PRIORITÉ : FORTE (ID + balise)*Spécificité : 100 + 1 = 101 points
+     Cible les <li> UNIQUEMENT à l'intérieur de #menu*/
+  color: #65cca9;
+  display: inline;
+  list-style: none;
+}
+
+#menu a {
+  /* PRIORITÉ : FORTE (ID + balise) Spécificité : 100 + 1 = 101 points
+     Cible les LIENS à l'intérieur de #menu */
+  display: inline-block;
+  margin: 40px 30px;
+  padding: 10px;
+}
+
+#menu a:link {
+  /* PRIORITÉ : FORTE (ID + balise + pseudo-classe)
+     Spécificité : 100 + 1 + 10 = 111 points */
+  text-decoration: none; /*couleur du lien sans le soulignement*/
+  color: #65cca9;
+}
+
+#menu a:visited {
+  /* Même priorité que :link */
+  color: #65cca9; /*couleur du lien quand le site est déjà visité*/
+}
+
+#menu a:focus {
+  /*/* PRIORITÉ : FORTE
+     S'applique UNIQUEMENT quand le lien reçoit le focus (clic) */
+  border-bottom: 1px solid;
+  padding: 5px; /* ← ÉCRASE le padding de #menu a (10px) */
+  background: #65cca9;
+  border-radius: 5px;
+  color: #363f48;
+}
+
+#menu a:hover {
+  /* PRIORITÉ : FORTE S'applique au SURVOL */
+  border-bottom: 1px solid;
+  background: #65cca9;
+  border-radius: 5px;
+  color: #363f48;
+  cursor: url("../images/trefle.png"), pointer;
+}
+
+/*============================================
+   CSS DE L'ACCUEIL 
+   ============================================ */
+
+.accueil {
+  /* PRIORITÉ : MOYENNE (classe) /Spécificité : 10 points /S'applique à l'élément avec class="accueil" /Définit l'image de fond et le positionnement */
+  background-image: url(../images/jardin.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60vh;
+  display: flex;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  margin-bottom: 60px;
+  position: relative; /* ← IMPORTANT pour que ::before se positionne DEDANS */
+  font-family:
+    "Tangerine", cursive; /* ATTENTION : Cette font-family s'applique à TOUT le contenu de .accueil y compris le bouton */
+}
+
+.accueil::before {
+  /* PRIORITÉ : MOYENNE (classe + pseudo-élément)
+     Spécificité : 10 + 1 = 11 points
+     Cette couche existe mais est INVISIBLE */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1; /* ← Sous le texte (z-index: 2) */
+}
+
+.photo-accueil {
+  /* PRIORITÉ : MOYENNE (classe)
+     Spécificité : 10 points
+     Style du conteneur de texte au-dessus de l'image */
+  position: relative;
+  z-index: 2; /* ← Au-dessus du ::before */
+  color: white;
+  padding: 1rem;
+  /*max-width: 900px;*/
+  text-align: center;
+}
+.photo-accueil p {
+  font-size: 70px;
+  color: #65cca9;
+  text-shadow: 1px 1px 2px darkslategrey;
+  margin-bottom: 10%;
+}
+
+.btn {
+  /* PRIORITÉ : MOYENNE (classe) PROBLÈME : La font-family de .accueil (Tangerine) 
+     s'applique PAR HÉRITAGE au bouton !
+     SOLUTION : Ajouter font-family ici pour écraser */
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: "Open sans", cursive;
+  font-size: small;
+  background-color: #65cca9;
+  color: white;
+  text-shadow: 1px 1px 1px darkslategrey;
+}
+.btn:hover {
+  color: #363f48;
+  cursor: url("../images/trefle.png"), pointer;
+}
+
+.accueil-suite {
+  /* PRIORITÉ : MOYENNE (classe) */
+  padding: 50px;
+}
+
+.accueil-suite p {
+  margin-top: 40px;
+}
+
+.avis-clients {
+  text-align: center !important;
+  padding: 40px 20px !important;
+  background-color: #2a3139 !important;
+}
+
+.avis-clients h2 {
+  margin-bottom: 30px;
+}
+
+.container-avis {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.texte-attente {
+  color: #e4e4e4;
+  font-style: italic;
+  padding: 20px;
+}
+
+/* ============================================
+   CSS DE PRESTATION
+   ============================================ */
+.services {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-items: center;
+}
+
+.carte-service img {
+  width: 100%;
+  max-width: 210px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.carte-service h3 {
+  font-family: "Tangerine", cursive;
+  color: #65cca9;
+  font-size: 40px;
+}
+.carte-service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.carte-service p {
+  flex-grow: 1;
+}
+
+/* ============================================
+   CSS DU FOOTER
+   ============================================ */
+
+footer {
+  /* PRIORITÉ : FORTE (balise définie 2 fois !)
+     1ère définition : ligne 12 (avec header, main)
+     2ème définition : ICI
+     Les styles ICI s'AJOUTENT à ceux de la ligne 12 /En cas de conflit, c'est la DERNIÈRE règle qui gagne */
+  color: #65cca9; /* ← ÉCRASE la couleur #e4e4e4 de la ligne 12 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 20px est toujours actif (vient de la ligne 12) */
+}
+
+.mentions a:link {
+  /* PRIORITÉ : MOYENNE (classe + balise + pseudo-classe)
+     Spécificité : 10 + 1 + 10 = 21 points */
+  color: #65cca9;
+  text-decoration: underline;
+}
+
+.mentions a:visited {
+  color: #65cca9;
+}
+
+.mentions a:focus {
+  color: #65cca9;
+}
+
+.mentions a:hover {
+  cursor: url("../images/trefle.png"), pointer;
+}
+
+.reseaux {
+  /* PRIORITÉ : MOYENNE (classe) */
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Remplace le margin-right sur les liens */
+}
+
+.reseaux a:link {
+  /* PRIORITÉ : MOYENNE (classe + balise + pseudo-classe)
+     Spécificité : 21 points */
+  text-decoration: none;
+}
+
+.image_reseaux {
+  /* PRIORITÉ : MOYENNE (classe) */
+  width: 45px;
+  height: 45px;
+}

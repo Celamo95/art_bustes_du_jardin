@@ -1,0 +1,14 @@
+# Fichiers de configuration sensible
+includes/config.php
+
+#photos des avis clients
+avis/
+
+#uploads futurs
+uploads/
+
+#fichiers systeme
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
