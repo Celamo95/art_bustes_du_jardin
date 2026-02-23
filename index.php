@@ -2,7 +2,7 @@
 <main>
     <section class="accueil">
         <div class="photo-accueil">
-            <p><b>Sublimez votre jardin avec Art'buste du Jardin</b></p>
+            <h2><b>Sublimez votre jardin avec Art'buste du Jardin</b></h2>
 
 
             <a class="btn" href="prestations.php">Découvrez nos services</a>
