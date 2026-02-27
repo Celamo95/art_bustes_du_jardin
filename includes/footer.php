@@ -1,3 +1,4 @@
+<hr class="ligne-footer">
 <footer>
 
     <div class="logo">

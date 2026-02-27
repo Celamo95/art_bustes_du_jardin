@@ -443,7 +443,7 @@ CSS DE CONTACT
 
 .carte-maps {
   max-width: 800px;
-  margin: 40px auto;
+  margin: 40px auto 100px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -458,7 +458,12 @@ CSS DE CONTACT
 /* ============================================
    CSS DU FOOTER
    ============================================ */
-
+.ligne-footer {
+  border: none;
+  height: 1px;
+  background-color: var(--couleur-ligne);
+  margin: 40px 35px 20px;
+}
 footer {
   /* PRIORITÉ : FORTE (balise définie 2 fois !)
      1ère définition : ligne 12 (avec header, main)
@@ -477,7 +482,7 @@ footer {
 .coordonnees-footer {
   text-align: left;
   flex: 1;
-  padding-left: 100px;
+  padding-left: 60px;
 }
 
 .coordonnees-footer p {
@@ -492,9 +497,9 @@ footer {
 }
 
 footer .mentions {
-  text-align: left;
+  text-align: center;
   flex: 1;
-  padding-left: 300px;
+  padding-left: 200px;
 }
 
 footer .mentions p {
