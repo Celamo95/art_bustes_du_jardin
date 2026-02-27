@@ -12,7 +12,7 @@
   --couleur-fond: #363f48;
   --couleur-fond-clair: #2a3139;
   --couleur-texte: #e4e4e4;
-  --couleur-ligne: hwb(180 47% 53%);
+  --couleur-ligne: var(--couleur-principale);
 
   /*polices*/
   --police-titre-grand: "Tangerine", cursive;
@@ -68,7 +68,7 @@ h2 {
 
 h3 {
   color: var(--couleur-principale);
-  font-family: var(--police-titre-petit);
+  font-family: var(--police-texte);
   font-size: var(--taille-h3);
   font-weight: bold;
 }
@@ -175,9 +175,8 @@ p {
   justify-content: center;
   margin: 0 -35px 60px;
   position: relative; /* ← IMPORTANT pour que ::before se positionne DEDANS */
-  font-family: var(
-    --police-titre-petit
-  ); /* ATTENTION : Cette font-family s'applique à TOUT le contenu de .accueil y compris le bouton */
+  font-family: var(--police-titre-petit);
+  /* ATTENTION : Cette font-family s'applique à TOUT le contenu de .accueil y compris le bouton */
 }
 
 .accueil::before {
@@ -243,7 +242,7 @@ p {
 .avis-clients {
   text-align: center !important;
   padding: 40px 20px !important;
-  background-color: var(--couleur-fond-clair) !important;
+  background-color: var(--couleur-fond-clair);
 }
 
 .avis-clients h2 {
@@ -358,6 +357,104 @@ CSS mentions legales
   line-height: 1.8;
   margin-bottom: 15px; /*espace entre les paragraphe*/
 }
+/*=============================================
+CSS DE CONTACT
+==============================================*/
+
+.contact {
+  color: var(--couleur-principale);
+  font-family: var(--police-titre-grand);
+  font-size: var(--taille-h2);
+}
+
+/*conteneur du formulaire*/
+.formulaire-contact {
+  max-width: 600px;
+  margin: 40px auto; /*centréhorizontalement*/
+  padding: 30px;
+  text-align: center;
+}
+
+/*chaque groupe label+input*/
+.formulaire-contact label {
+  display: block; /*label au dessus du champ*/
+  margin-bottom: 8px;
+  text-align: left; /*aligné à gauche du champs*/
+  font-weight: bold;
+  color: var(--couleur-texte);
+}
+
+/*inputs et textarea*/
+.formulaire-contact input[type="text"],
+.formulaire-contact input[type="email"],
+.formulaire-contact textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid var(--couleur-principale);
+  border-radius: 10px;
+  background-color: rgba(101, 204, 169, 0.1);
+  color: var(--couleur-texte);
+  font-family: var(--police-texte);
+  font-size: var(--taille-texte-petit);
+}
+
+/*focus sur les champs*/
+.formulaire-contact input:focus,
+.formulaire-contact textarea:focus {
+  outline: none;
+  border: 2px solid var(--couleur-principale);
+  background-color: rgba(101, 204, 169, 0.2);
+}
+
+/*coordonnées détaillées*/
+.coordonnees-detail {
+  max-width: 800px;
+  margin: 60px auto 40px;
+  padding: 30px 0; /*padding vertical seulement*/
+  text-align: center;
+}
+
+.coordonnees-detail h3 {
+  margin-bottom: 80px;
+  color: var(--couleur-principale);
+  font-family: var(--police-titre-grand);
+  font-size: var(--taille-h2);
+}
+
+.info-contact {
+  text-align: left;
+  padding: 0 30px; /*padding horizontal juste pour le texte*/
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.info-contact p {
+  line-height: 1.8;
+}
+
+.info-contact i {
+  color: var(--couleur-principale);
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.carte-maps {
+  max-width: 800px;
+  margin: 40px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.carte-maps iframe {
+  width: 100% !important; /*force la largeur complète*/
+  height: 400px;
+  display: block; /*enleve les espaces fantomes*/
+  border: 0;
+}
 /* ============================================
    CSS DU FOOTER
    ============================================ */
@@ -373,33 +470,70 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 20px 35px;
   /* padding: 20px est toujours actif (vient de la ligne 12) */
 }
 
-.mentions a:link {
+.coordonnees-footer {
+  text-align: left;
+  flex: 1;
+  padding-left: 100px;
+}
+
+.coordonnees-footer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.coordonnees-footer i {
+  color: var(--couleur-principale);
+  margin-right: 5px;
+  font-size: 18px;
+}
+
+footer .mentions {
+  text-align: left;
+  flex: 1;
+  padding-left: 300px;
+}
+
+footer .mentions p {
+  margin: 0;
+  font-size: 14px;
+}
+footer .mentions a:link {
   /* PRIORITÉ : MOYENNE (classe + balise + pseudo-classe)
      Spécificité : 10 + 1 + 10 = 21 points */
   color: var(--couleur-principale);
   text-decoration: underline;
 }
 
-.mentions a:visited {
+footer .mentions a:visited {
   color: var(--couleur-principale);
 }
 
-.mentions a:focus {
+footer .mentions a:focus {
   color: var(--couleur-principale);
 }
 
-.mentions a:hover {
+footer .mentions a:hover {
   cursor: url("../images/trefle.png"), pointer;
 }
 
 .reseaux {
   /* PRIORITÉ : MOYENNE (classe) */
   display: flex;
-  justify-content: center;
-  gap: 10px; /* Remplace le margin-right sur les liens */
+  justify-content: flex-end;
+  gap: 15px; /* Remplace le margin-right sur les liens */
+  flex: 1;
+  padding-right: 100px;
+}
+
+.reseaux a {
+  color: var(--couleur-principale);
+  font-size: 35px;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .reseaux a:link {
@@ -408,8 +542,7 @@ footer {
   text-decoration: none;
 }
 
-.image_reseaux {
-  /* PRIORITÉ : MOYENNE (classe) */
-  width: 45px;
-  height: 45px;
+.reseaux a:hover {
+  color: var(--couleur-principale);
+  transform: translateY(-3px);
 }
