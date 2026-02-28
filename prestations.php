@@ -46,7 +46,13 @@
                 illo atque at ullam nobis aspernatur maiores, necessitatibus quas exercitationem optio esse corrupti numquam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, ab quae omnis deleniti aspernatur ad ducimus,
                 magnam eius numquam adipisci facilis fugiat, veniam quas sequi at. Laudantium fuga reiciendis cumque?</p>
             <br>
-            <video controls controlsList="nodownload" playinline width=650 muted poster="images/jardin_poster.jpg" preload="metadata" class="video">
+            <video controls controlsList="nodownload"
+                playinline width=650
+                muted
+                poster="images/jardin_poster.jpg"
+                preload="metadata"
+                onended="this.load()"
+                class="video">
                 <source src="images/video_jardin_cure.mp4" type="video/mp4">Votre navigateur ne supporte pas la lecture de vidéos.
             </video>
         </div>

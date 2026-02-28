@@ -31,7 +31,10 @@
                 Centre Val de Loire, FRANCE</p>
 
             <p><i class="fas fa-phone"></i><strong>Téléphone :</strong><br>
-                06 63 71 66 33</p>
+                06 63 71 66 33<br>
+                <i class="fas fa-envelope"></i><strong>Email :</strong><br>
+                karine@art-bustes.fr
+            </p>
 
             <p><i class="fas fa-clock"></i></i><strong>Horaires :</strong><br>
                 Du lundi au vendredi : 9h - 18h<br>

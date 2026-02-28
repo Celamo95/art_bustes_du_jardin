@@ -130,6 +130,7 @@ p {
      Spécificité : 100 + 1 + 10 = 111 points */
   text-decoration: none; /*couleur du lien sans le soulignement*/
   color: var(--couleur-principale);
+  transition: all 0.3s ease;
 }
 
 #menu a:visited {
@@ -156,6 +157,7 @@ p {
   border-radius: 5px;
   color: var(--couleur-fond);
   cursor: url("../images/trefle.png"), pointer;
+  transform: translateY(-3px);
 }
 
 /*============================================
@@ -189,6 +191,7 @@ p {
   left: 0;
   bottom: 0;
   right: 0;
+  background-color: rgba(54, 63, 72, 0.5);
   z-index: 1; /* ← Sous le texte (z-index: 2) */
 }
 
@@ -224,10 +227,13 @@ p {
   background-color: var(--couleur-principale);
   color: var(--couleur-texte);
   text-shadow: 1px 1px 1px darkslategrey;
+  transition: all 0.3s ease;
 }
 .btn:hover {
   color: var(--couleur-fond);
   cursor: url("../images/trefle.png"), pointer;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .accueil-suite {
@@ -426,8 +432,8 @@ CSS DE CONTACT
   text-align: left;
   padding: 0 30px; /*padding horizontal juste pour le texte*/
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr; /*3colonnes*/
+  gap: 25px;
   margin-bottom: 40px;
 }
 
@@ -550,4 +556,5 @@ footer .mentions a:hover {
 .reseaux a:hover {
   color: var(--couleur-principale);
   transform: translateY(-3px);
+  cursor: url("../images/trefle.png"), pointer;
 }

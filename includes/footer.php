@@ -21,13 +21,12 @@
             <i class="fab fa-instagram"></i>
         </a>
 
-        <a href="#" target="_blank">
+        <a href="https://www.facebook.com/profile.php?id=61555837855781" target="_blank">
             <i class="fab fa-facebook"></i>
         </a>
 
-        <!--Revoir les icones des réseaux pas totalement du même design-->
 
-        <a href="#" target="_blank">
+        <a href="https://www.linkedin.com/in/karine-acquino-68593525a/" target="_blank">
             <i class="fab fa-linkedin"></i>
         </a>
     </div>
