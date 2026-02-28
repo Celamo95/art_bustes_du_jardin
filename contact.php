@@ -1,9 +1,77 @@
-<?php include 'includes/header.php'; ?>
+<?php
+//Initialisation des variables//
+$message_envoye = false;
+$erreur = '';
+
+//traitement du formulaire//
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    //recuperation et nettoyage des données
+    $nom = htmlspecialchars(trim($_POST['nom'] ?? ''));
+    $email = htmlspecialchars(trim($_POST['email'] ?? ''));
+    $message = htmlspecialchars(trim($_POST['message'] ?? ''));
+
+    //validation
+    if (empty($nom) || empty($email) || empty($message)) {
+        $erreur = "Tous les champs sont obligatoires.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erreur = "L'adresse email n'est pas valide.";
+    } else {
+        //envoie de l'email (simulation en local)
+        $destinataire = "celine.ferrieres@outlook.fr";
+        $sujet = "Nouveau message depuis le site Art'Bustes du Jardin" . $nom;
+        $contenu = "Nom :$nom\n";
+        $contenu .= "Email : $email\n\n";
+        $contenu .= "Message :\n$message";
+
+        // en local : sauvegarder dans un fichier
+        $fichier_message = 'message_contact.txt';
+        $log = "n\n==========" . date('d/m/Y H:i:s') . "==========\n";
+        $log .= "De : $nom($email)\n";
+        $log .= "Message :\n$message\n";
+
+        if (file_put_contents($fichier_message, $log, FILE_APPEND)) {
+            $message_envoye = true;
+        } else {
+            $erreur = "Erreur lors de l'envoi.Veuillez réessayer.";
+        }
+
+        /* quand le site sera en ligne
+        $header = "From : $email\r\n";
+        $header .= "Reply-To: $email\r\n";
+
+        if (mail($destinataire, $sujet, $contenu, $header)) {
+            $message_envoye = true;
+        } else {
+            $erreur = "Erreur lors de l'envoi. Veuillez réessayer";*/
+    }
+}
+
+
+include 'includes/header.php';
+?>
 
 <main>
 
     <h2 class="contact">Contactez-nous</h2>
 
+    <?php if ($message_envoye): ?>
+
+        <div class="message-succes">
+            Votre message a bien été envoyé ! Nous vous répondrons dans les plus brefs délais.
+        </div>
+
+    <?php endif; ?>
+
+
+    <?php if ($erreur): ?>
+
+        <div class="message-erreur">
+            <?= $erreur; ?>
+        </div>
+
+    <?php endif; ?>
 
 
     <form method="post" action="" class="formulaire-contact">

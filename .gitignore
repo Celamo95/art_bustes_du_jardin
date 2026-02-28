@@ -6,6 +6,8 @@ avis/
 
 #uploads futurs
 uploads/
+#message de contact local
+message_contact.txt
 
 #fichiers systeme
 .DS_Store
